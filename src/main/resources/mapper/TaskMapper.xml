@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hand.demo.infra.mapper.TaskMapper">
+
+    <select id="selectTask" parameterType="com.hand.demo.domain.entity.Task" resultType="com.hand.demo.domain.entity.Task">
+        SELECT
+        id,
+        employee_id,
+        state,
+        task_number,
+        task_description,
+        tenant_id,
+        object_version_number,
+        creation_date,
+        created_by,
+        last_updated_by,
+        last_update_date
+        FROM
+        todo_task
+        <where>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="employeeId != null">
+                AND employee_id = #{employeeId}
+            </if>
+            <if test="state != null">
+                AND state = #{state}
+            </if>
+            <if test="taskNumber != null">
+                AND task_number = #{taskNumber}
+            </if>
+            <if test="taskDescription != null">
+                AND task_description LIKE CONCAT('%', #{taskDescription}, '%')
+            </if>
+            <if test="tenantId != null">
+                AND tenant_id = #{tenantId}
+            </if>
+        </where>
+        ORDER BY last_update_date DESC
+    </select>
+</mapper>
+

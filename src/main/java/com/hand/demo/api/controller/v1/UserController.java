@@ -18,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.hand.demo.domain.entity.User;
 import com.hand.demo.domain.repository.UserRepository;
-import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 

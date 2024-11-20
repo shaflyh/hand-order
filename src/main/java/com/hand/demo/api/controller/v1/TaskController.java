@@ -9,8 +9,6 @@ import io.choerodon.mybatis.pagehelper.domain.PageRequest;
 import io.choerodon.mybatis.pagehelper.domain.Sort;
 import io.choerodon.swagger.annotation.Permission;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.hzero.core.base.BaseController;
@@ -21,7 +19,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.hand.demo.domain.entity.Task;
 import com.hand.demo.domain.repository.TaskRepository;
-import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
@@ -77,9 +74,6 @@ public class TaskController extends BaseController {
 
     @Permission(level = ResourceLevel.ORGANIZATION)
     @ApiOperation(value = "根据taskNumber查询task")
-    @ApiImplicitParams({
-            @ApiImplicitParam(value = "任务编号", paramType = "string")
-    })
     @GetMapping("/{taskNumber}")
     public ResponseEntity<Task> query(@PathVariable Long organizationId, @PathVariable String taskNumber) {
         return Results.success(taskRepository.selectDetailByTaskNumber(taskNumber));
@@ -88,7 +82,7 @@ public class TaskController extends BaseController {
     @Permission(level = ResourceLevel.ORGANIZATION)
     @ApiOperation(value = "根据taskNumber删除task")
     @DeleteMapping("/{taskNumber}")
-    public void delete(@PathVariable Long organizationId, @PathVariable @ApiParam(value = "任务编号") String taskNumber) {
+    public void delete(@PathVariable("organizationId") Long organizationId, @PathVariable("taskNumber") String taskNumber) {
         taskService.deleteByTaskNumber(taskNumber);
     }
 }

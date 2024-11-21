@@ -38,6 +38,9 @@ public class ExampleController extends BaseController {
     @Permission(level = ResourceLevel.SITE, permissionLogin = true)
     @GetMapping("/{id}")
     public ResponseEntity<Example> hello(@PathVariable Long id) {
+
+
+
         return Results.success(exampleRepository.selectByPrimaryKey(id));
     }
 

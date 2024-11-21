@@ -15,13 +15,15 @@ public class SwaggerTags {
     public static final String EXAMPLE = "Example";
     public static final String USER = "User";
     public static final String TASK = "Task";
+    public static final String MESSAGE = "Message";
 
     @Autowired
     public SwaggerTags(Docket docket) {
         docket.tags(
                 new Tag(EXAMPLE, "EXAMPLE 案例"),
                 new Tag(USER, "USER"),
-                new Tag(TASK, "TASK")
+                new Tag(TASK, "TASK"),
+                new Tag(MESSAGE, "MESSAGE")
         );
     }
 }

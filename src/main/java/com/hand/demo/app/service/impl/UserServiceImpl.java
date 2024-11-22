@@ -1,10 +1,9 @@
 package com.hand.demo.app.service.impl;
 
-import com.hand.demo.app.service.UserService;
 import com.hand.demo.domain.entity.Task;
 import com.hand.demo.domain.entity.User;
 import com.hand.demo.domain.repository.TaskRepository;
-import com.hand.demo.domain.repository.UserRepository;
+import com.hand.demo.domain.repository.UserService;
 import io.choerodon.core.exception.CommonException;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -16,11 +15,11 @@ import java.util.List;
  * 用户应用服务实现
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements com.hand.demo.app.service.UserService {
     private final TaskRepository taskRepository;
-    private final UserRepository userRepository;
+    private final UserService userRepository;
 
-    public UserServiceImpl(TaskRepository taskRepository, UserRepository userRepository) {
+    public UserServiceImpl(TaskRepository taskRepository, UserService userRepository) {
         this.taskRepository = taskRepository;
         this.userRepository = userRepository;
     }
@@ -46,5 +45,10 @@ public class UserServiceImpl implements UserService {
         if (CollectionUtils.isNotEmpty(tasks)) {
             taskRepository.batchDelete(tasks);
         }
+    }
+
+    @Override
+    public User getUserByKey(Long userId) {
+        return userRepository.selectByPrimaryKey(userId);
     }
 }

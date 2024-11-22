@@ -20,4 +20,6 @@ public interface UserService {
      * @param userId 用户ID
      */
     void delete(Long userId);
+
+    User getUserByKey(Long userId);
 }

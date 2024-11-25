@@ -116,6 +116,11 @@
             <artifactId>hzero-scheduler-saas</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.hzero.boot</groupId>
+            <artifactId>hzero-boot-file</artifactId>
+        </dependency>
+
     </dependencies>
 
     <repositories>

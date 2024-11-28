@@ -120,6 +120,11 @@
             <groupId>org.hzero.boot</groupId>
             <artifactId>hzero-boot-file</artifactId>
         </dependency>
+        <!--        HZero Import Services-->
+        <dependency>
+            <groupId>org.hzero.boot</groupId>
+            <artifactId>hzero-boot-import</artifactId>
+        </dependency>
 
     </dependencies>
 

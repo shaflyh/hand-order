@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hand.demo.infra.mapper.InvCountHeaderMapper">
+    <update id="updateByCountHeaderKey">
+        UPDATE todo_inv_count_header
+        SET count_status = #{countStatus},
+            workflow_id = #{workflowId},
+            approved_time = #{approvedTime},
+            tenant_id = #{tenantId},
+            count_number = #{countNumber}
+        WHERE count_header_id = #{countHeaderId}
+    </update>
+</mapper>

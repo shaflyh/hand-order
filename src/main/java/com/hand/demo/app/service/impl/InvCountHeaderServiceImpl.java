@@ -28,26 +28,20 @@ public class InvCountHeaderServiceImpl implements InvCountHeaderService {
         invCountHeader.setWorkflowId(workflowEventRequestDTO.getWorkflowId());
         invCountHeader.setApprovedTime(workflowEventRequestDTO.getApprovedTime());
 
-        InvCountHeader existingInvCountHeader = new InvCountHeader();
-
-
         // Retrieve the matching record (first match)
         InvCountHeader existingRecord = repository.selectOne(new InvCountHeader() {{
             setCountNumber(workflowEventRequestDTO.getBusinessKey());
             setTenantId(organizationId);
         }});
-        System.out.println(existingRecord);
 
         if (existingRecord != null) {
-            System.out.println(existingRecord.getCountStatus());
-            System.out.println(existingRecord.getCountHeaderId());
             // Update existing record using its primary key
+            System.out.println("Update existing record using its primary key");
             invCountHeader.setCountHeaderId(existingRecord.getCountHeaderId()); // Set the primary key for the update
-            System.out.println(invCountHeader.getCountStatus());
-            System.out.println(invCountHeader.getCountHeaderId());
             repository.updateByCountHeaderKey(invCountHeader);
         } else {
             // Insert new record
+            System.out.println("Inserting new record");
             repository.insert(invCountHeader);
         }
     }

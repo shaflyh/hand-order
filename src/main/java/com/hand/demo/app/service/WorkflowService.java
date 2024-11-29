@@ -4,12 +4,13 @@ import com.hand.demo.api.dto.WorkflowRequestDTO;
 import org.hzero.boot.workflow.dto.RunTaskHistory;
 
 import java.util.List;
+import java.util.Map;
 
 public interface WorkflowService {
 
-    void startWorkflow(Long tenantId, WorkflowRequestDTO workflowStartDTO);
+    Map<String, Object> startWorkflow(Long tenantId, WorkflowRequestDTO workflowRequestDTO);
 
-    void withdrawWorkflow(Long tenantId, WorkflowRequestDTO workflowStartDTO);
+    Map<String, Object> withdrawWorkflow(Long tenantId, WorkflowRequestDTO workflowRequestDTO);
 
-    List<RunTaskHistory> getApproveHistory(Long tenantId, WorkflowRequestDTO workflowStartDTO);
+    List<RunTaskHistory> getApproveHistory(Long tenantId, WorkflowRequestDTO workflowRequestDTO);
 }

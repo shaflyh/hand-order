@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author muhammad.shafly@hand-global.com
@@ -32,24 +33,27 @@ public class WorkflowController {
     @Permission(level = ResourceLevel.ORGANIZATION)
     @ApiOperation(value = "Start Workflow")
     @PostMapping("/start")
-    public ResponseEntity<String> start(@PathVariable("organizationId") Long tenantId, WorkflowRequestDTO workflowStartDTO) {
-        workflowService.startWorkflow(tenantId, workflowStartDTO);
-        return Results.success("Workflow started");
+    public ResponseEntity<Map<String, Object>> start(
+            @PathVariable("organizationId") Long tenantId,
+            @RequestBody WorkflowRequestDTO workflowRequestDTO) {
+        return ResponseEntity.ok(workflowService.startWorkflow(tenantId, workflowRequestDTO));
     }
 
     @Permission(level = ResourceLevel.ORGANIZATION)
     @ApiOperation(value = "Withdraw Workflow")
     @PostMapping("/withdraw")
-    public ResponseEntity<String> withdraw(@PathVariable("organizationId") Long tenantId, WorkflowRequestDTO workflowStartDTO) {
-        workflowService.withdrawWorkflow(tenantId, workflowStartDTO);
-        return Results.success("Workflow withdrawn");
+    public ResponseEntity<Map<String, Object>> withdraw(
+            @PathVariable("organizationId") Long tenantId,
+            @ModelAttribute WorkflowRequestDTO workflowRequestDTO) {
+        return Results.success(workflowService.withdrawWorkflow(tenantId, workflowRequestDTO));
     }
 
     @Permission(level = ResourceLevel.ORGANIZATION)
     @ApiOperation(value = "Approve History")
     @GetMapping("/approval-history")
-    public ResponseEntity<List<RunTaskHistory>> getApproveHistory(@PathVariable("organizationId") Long tenantId, WorkflowRequestDTO workflowStartDTO) {
-        workflowService.getApproveHistory(tenantId, workflowStartDTO);
-        return Results.success(workflowService.getApproveHistory(tenantId, workflowStartDTO));
+    public ResponseEntity<List<RunTaskHistory>> getApproveHistory(
+            @PathVariable("organizationId") Long tenantId,
+            @ModelAttribute WorkflowRequestDTO workflowRequestDTO) {
+        return Results.success(workflowService.getApproveHistory(tenantId, workflowRequestDTO));
     }
 }

@@ -1,5 +1,7 @@
 package com.hand.demo.api.dto;
 
+import java.util.Map;
+
 /**
  * @author muhammad.shafly@hand-global.com
  * @since 2024-11-29 09:10
@@ -9,7 +11,7 @@ public class WorkflowRequestDTO {
     private String flowKey;
     private String dimension;
     private String starter;
-    private Long paymentAmount;
+    private Map<String, Object> variableMap;
 
     public String getBusinessKey() {
         return businessKey;
@@ -43,11 +45,11 @@ public class WorkflowRequestDTO {
         this.starter = starter;
     }
 
-    public Long getPaymentAmount() {
-        return paymentAmount;
+    public Map<String, Object> getVariableMap() {
+        return variableMap;
     }
 
-    public void setPaymentAmount(Long paymentAmount) {
-        this.paymentAmount = paymentAmount;
+    public void setVariableMap(Map<String, Object> variableMap) {
+        this.variableMap = variableMap;
     }
 }

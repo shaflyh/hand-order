@@ -25,7 +25,7 @@ public class InvCountHeaderController {
     @Permission(level = ResourceLevel.ORGANIZATION)
     @ApiOperation(value = "Approval Callback")
     @PostMapping(path = "/approval-callback")
-    public ResponseEntity<String> sendEmail(@PathVariable("organizationId") Long tenantId,
+    public ResponseEntity<String> approvalCallback(@PathVariable("organizationId") Long tenantId,
                                        @RequestBody WorkflowEventRequestDTO workflowEventRequestDTO) {
         invCountHeaderService.approvalCallback(tenantId, workflowEventRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body("success");
